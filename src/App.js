@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Map from './Map'
 import './App.css';
+import {allLocation} from './locations.js'
 
 class App extends Component {
   render() {
@@ -10,7 +11,7 @@ class App extends Component {
           <h1 className="App-title">Jeddah Universities</h1>
         </header>
 
-        <Map/>
+        <Map allLocation={allLocation}/>
 
       </div>
     );
