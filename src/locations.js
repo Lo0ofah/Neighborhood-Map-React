@@ -1,11 +1,11 @@
 export const  allLocation = [
   {
     title: 'king Abdulaziz Univresity',
-    location: {lat: 21.4989161, lng: 39.2416355}
+    location: {lat: 21.48962284, lng: 39.24614995}
   },
   {
     title: 'Effat Univresity',
-    location: {lat: 21.47892443, lng: 39.2106634}
+    location: {lat: 21.47852718, lng: 39.21007419}
   },
 
   {
@@ -14,10 +14,11 @@ export const  allLocation = [
   },
   {
     title: 'Dar Alhekma Univresity',
-    location: {lat: 21.48883704, lng: 39.2306837}
+    location: {lat: 21.48879752, lng: 39.23067153}
+  //  location: {lat: 21.48873762, lng: 39.23069298}
  },
   {
-     title: 'UBT Univresity',
-     location: {lat: 21.57631966, lng: 39.1524268}
+     title: 'CBA Univresity',
+     location: {lat: 21.57616113, lng: 39.15234942}
    }
 ];
