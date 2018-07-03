@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import scriptLoader from 'react-async-script-loader';
 
 class Map extends Component{
-  
+
     state = {
         map: {},
         markers: [],
@@ -31,7 +31,7 @@ class Map extends Component{
 componentDidMount =() =>{
 const allLocation = this.props.allLocation;
 let self = this;
-for (var  i = 0; i < allLocation.length; i++){
+for (let  i = 0; i < allLocation.length; i++){
   var clientId = "WJOXEMGT5VVXMSSTTIWCXPBC3GVTUQ0CU02X1NLZU3YIKQ5W";
   var clientSecret = "SMQHCSS1STWQTO0XIG15V4YFSZBTIGJA50ZT42KPSDOPDK0T";
   var request = "https://api.foursquare.com/v2/venues/search?client_id=" + clientId + "&client_secret=" + clientSecret + "&v=20180323&ll=" + allLocation[i].location.lat+','+allLocation[i].location.lng + "&limit=1";
@@ -41,7 +41,7 @@ for (var  i = 0; i < allLocation.length; i++){
               return;
             }
               response.json().then(function (data){
-                self.state.allData.push(data.response.venues[0]);
+                self.state.allData.splice( i, 0, data.response.venues[0]);
               });
 
     });
@@ -70,7 +70,7 @@ for (var  i = 0; i < allLocation.length; i++){
     let self = this;
     let infowindow = new window.google.maps.InfoWindow();
     var bounds = new window.google.maps.LatLngBounds();
-    for (var  i = 0; i < allLocation.length; i++){
+    for (let  i = 0; i < allLocation.length; i++){
       var position = allLocation[i].location;
       var title = allLocation[i].title;
       var marker = new window.google.maps.Marker({
