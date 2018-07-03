@@ -1,12 +1,13 @@
-import React, { Component } from 'react'
-import scriptLoader from 'react-async-script-loader'
+import React, { Component } from 'react';
+import scriptLoader from 'react-async-script-loader';
 
 class Map extends Component{
-
+  
     state = {
         map: {},
         markers: [],
-        allData:[]
+        allData:[],
+        allInfoWindow:[]
      }
 
 
@@ -59,9 +60,12 @@ for (var  i = 0; i < allLocation.length; i++){
      infowindow.setMarker = null;
    });
  }
+ this.state.allInfoWindow.push(infowindow);
 }
 
   componentDidUpdate =() =>{
+    this.clearMarker();
+    this.clearInfoWindow();
     const allLocation = this.props.allLocation;
     let self = this;
     let infowindow = new window.google.maps.InfoWindow();
@@ -101,6 +105,19 @@ for (var  i = 0; i < allLocation.length; i++){
   this.populateInfoWindow(marker,infowindow,data);
 
 }
+
+clearMarker =  () => {
+    for(let marker of this.state.markers){
+      marker.setMap(null);
+    }
+}
+
+clearInfoWindow = () => {
+    for(let infoWindow of this.state.allInfoWindow){
+      infoWindow.close();
+    }
+
+  }
 
   render() {
     return (

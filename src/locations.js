@@ -18,7 +18,7 @@ export const  allLocation = [
   //  location: {lat: 21.48873762, lng: 39.23069298}
  },
   {
-     title: 'CBA Univresity',
+     title: 'UBT Univresity',
      location: {lat: 21.57616113, lng: 39.15234942}
    }
 ];
