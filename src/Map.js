@@ -121,7 +121,7 @@ clearInfoWindow = () => {
 
   render() {
     return (
-    <div className="map-container" id="map"> </div>
+    <div className="map-container" id="map" role="application" tabIndex="-1"> </div>
     )
   }
 }

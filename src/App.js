@@ -27,7 +27,7 @@ class App extends Component {
       ShowingLocation.sort(sortBy('title'))
     return (
       <div className="App">
-        <header className="App-header">
+        <header className="App-header" role="banner">
           <h1 className="App-title">Jeddah Universities</h1>
         </header>
         <Map allLocation={ShowingLocation}/>
