@@ -8,8 +8,7 @@ import sortBy from 'sort-by'
 
 class App extends Component {
   state = {
-    query: '',
-    ShowingLocation:allLocation
+    query: ''
    }
 
    updateQuery = (query) => {

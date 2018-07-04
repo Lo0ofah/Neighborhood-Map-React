@@ -19,6 +19,7 @@ class ListView extends Component {
       tabindex="0"
       aria-label = {"View Details for "+ location.title}
       Key={index}
+      onClick={(event)=>console.log(event.target.textContent)}
        > {location.title}</li>
     ))}
     </ul>
