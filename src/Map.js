@@ -37,7 +37,8 @@ for (let  i = 0; i < allLocation.length; i++){
   var request = "https://api.foursquare.com/v2/venues/search?client_id=" + clientId + "&client_secret=" + clientSecret + "&v=20180323&ll=" + allLocation[i].location.lat+','+allLocation[i].location.lng + "&limit=1";
     fetch(request).then(function (response) {
       if (response.status !== 200) {
-        console.log("Sorry there is no data ")
+        //  console.log("Sorry there is no data ")
+              self.state.allData.splice( i, 0, "There is no data ");
               return;
             }
               response.json().then(function (data){
@@ -88,6 +89,9 @@ for (let  i = 0; i < allLocation.length; i++){
     }
     this.state.map.fitBounds(bounds);
 
+    if(this.props.selectedItem){
+      this.openSelectedInfowinw();
+    }
   }
 
   markerAnimation = (marker) => {
@@ -106,17 +110,33 @@ for (let  i = 0; i < allLocation.length; i++){
 
 }
 
+
+clearArray = (array) =>{
+  while(array.length > 0) {
+      array.pop();
+  }
+
+}
+
 clearMarker =  () => {
     for(let marker of this.state.markers){
       marker.setMap(null);
     }
+      this.clearArray(this.state.markers)
 }
 
 clearInfoWindow = () => {
     for(let infoWindow of this.state.allInfoWindow){
       infoWindow.close();
     }
+    this.clearArray(this.state.allInfoWindow)
 
+  }
+
+  openSelectedInfowinw = () =>{
+    let infowindow = new window.google.maps.InfoWindow();
+    let selectedMarker =  this.state.markers.filter((marker)=>{ return marker.title === this.props.selectedItem})
+    this.markerInfoWidow(selectedMarker[0], infowindow, this.state.allData[selectedMarker[0].id].name);
   }
 
   render() {

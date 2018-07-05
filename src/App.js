@@ -8,12 +8,17 @@ import sortBy from 'sort-by'
 
 class App extends Component {
   state = {
-    query: ''
+    query: '',
+    selectedItem:''
    }
 
    updateQuery = (query) => {
        this.setState({query : query})
      }
+
+  updateSelectedItem = (item) =>{
+       this.setState({selectedItem : item})
+  }
 
   render() {
     let ShowingLocation
@@ -29,8 +34,8 @@ class App extends Component {
         <header className="App-header" role="banner">
           <h1 className="App-title">Jeddah Universities</h1>
         </header>
-        <Map allLocation={ShowingLocation}/>
-        <ListView allLocation={ShowingLocation} updateQuery={this.updateQuery}/>
+        <Map allLocation={ShowingLocation} selectedItem={this.state.selectedItem}/>
+        <ListView allLocation={ShowingLocation} updateQuery={this.updateQuery} updateSelectedItem={this.updateSelectedItem}/>
 
       </div>
     );

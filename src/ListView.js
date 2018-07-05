@@ -12,14 +12,14 @@ class ListView extends Component {
     placeholder="search"
     tabindex="0"
     value={this.props.query}
-    onChange={(event) => this.props.updateQuery(event.target.value)}/>
+    onChange={(event) => this.props.updateQuery(event.target.value.trim())}/>
     <ul className="locationList" tabindex="0"  aria-label="location list">
   { this.props.allLocation.map( (location, index) => (
       <li
       tabindex="0"
       aria-label = {"View Details for "+ location.title}
       Key={index}
-      onClick={(event)=>console.log(event.target.textContent)}
+      onClick={(event)=>this.props.updateSelectedItem(event.target.textContent.trim())}
        > {location.title}</li>
     ))}
     </ul>
