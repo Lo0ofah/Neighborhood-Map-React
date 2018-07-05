@@ -20,6 +20,11 @@
     width: 100%;
 }
 
+.mapError-container{
+  padding: 10px;
+  font-size: 20px;
+}
+
 .ListView-container{
   width: 20%;
   height: 900px;

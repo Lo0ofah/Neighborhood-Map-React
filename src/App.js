@@ -7,6 +7,7 @@ import escapeRegExp from 'escape-string-regexp'
 import sortBy from 'sort-by'
 
 class App extends Component {
+  
   state = {
     query: '',
     selectedItem:''
