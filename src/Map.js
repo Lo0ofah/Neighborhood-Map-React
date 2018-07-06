@@ -45,7 +45,6 @@ componentDidMount =() => {
 
     fetch(request).then(function (response) {
       if (response.status !== 200) {
-          allLocation[i].data = "There is no data";
           return;
       }
       response.json().then(function (data){
@@ -63,13 +62,16 @@ create markers and infowindows foe the location
     if(this.state.successfulMapLoaded){
     this.clearMarker();
     this.clearInfoWindow();
+
     const allLocation = this.props.allLocation;
     let self = this;
     let infowindow = new window.google.maps.InfoWindow();
     var bounds = new window.google.maps.LatLngBounds();
+
     for (let  i = 0; i < allLocation.length; i++){
       var position = allLocation[i].location;
       var title = allLocation[i].title;
+
       var marker = new window.google.maps.Marker({
         map: this.state.map,
         position: position,
@@ -77,12 +79,16 @@ create markers and infowindows foe the location
         animation: window.google.maps.Animation.DROP,
         id: i
       });
+
        marker.addListener('click', function() {
-            self.markerInfoWidow(this, infowindow, allLocation[i].data.name);
+         let data = allLocation[i].data ? allLocation[i].data.name : "sorry there are no data";
+            self.markerInfoWidow(this, infowindow, data);
        });
+
       this.state.markers.push(marker);
       bounds.extend(marker.position);
     }
+
     this.state.map.fitBounds(bounds);
 
     if(this.props.selectedItem){
@@ -168,10 +174,16 @@ openSelectedInfowindow
 to open the Infowindow when clicked on the list view
 */
   openSelectedInfowindow = (infowindow) => {
-    let selectedMarker =  this.state.markers.filter((marker)=>{ return marker.title === this.props.selectedItem})
-    let selectedLocation =  this.props.allLocation.filter((location)=>{ return location.title === this.props.selectedItem})
+    let selectedMarker =  this.state.markers.filter((marker)=>{
+        return marker.title === this.props.selectedItem
+    })
+    let selectedLocation =  this.props.allLocation.filter((location)=>{
+      return location.title === this.props.selectedItem
+    })
+
     if(selectedMarker && selectedMarker[0] && selectedLocation && selectedLocation[0]){
-      this.markerInfoWidow(selectedMarker[0], infowindow, selectedLocation[0].data.name);
+      var data =  selectedLocation[0].data ? selectedLocation[0].data.name :"sorry there are no data";
+      this.markerInfoWidow(selectedMarker[0], infowindow, data);
     }
   }
 
